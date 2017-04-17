@@ -23,7 +23,7 @@
       <form action="/add-link" method="post">
         <div>
           <label for="url">URL</label>
-          <input type="text" name="url" value="">
+          <input type="text" name="url" value="http://">
         </div>
         <div>
           <label for="title">title</label>
@@ -53,6 +53,8 @@
                 <input type="hidden" name="id" value="{{this.id}}">
                 <input type="hidden" name="votes" value="{{this.votes}}">
             </form>
+            <a href="/delete/{{this.id}}"><button>Delete</button></a>
+
           </div>
           <div class="col l9">
             <span class="title">

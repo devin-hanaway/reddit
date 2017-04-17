@@ -45,6 +45,14 @@ app.post('/downvote/:id', (req, res) => {
   })
 })
 
+app.get("/delete/:id", (req, res)=> {
+  console.log("deleted post");
+  linkQuery.deleteLink(req.params.id)
+  .then(()=>{
+    res.redirect('/')
+  })
+})
+
 
 
 

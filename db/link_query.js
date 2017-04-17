@@ -17,10 +17,14 @@ function downvote(obj){
   return pg('link').where('id', obj['id']).update('votes', +obj['votes' ]-1)
 }
 
+function deleteLink(id){
+  return pg('link').where('id', id).del()}
+
 
 module.exports = {
   getAll,
   add,
   upvote,
-  downvote
+  downvote,
+  deleteLink
 }
