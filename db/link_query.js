@@ -21,6 +21,8 @@ function deleteLink(id){
   return pg('link').where('id', id).del()}
 
 
+
+
 module.exports = {
   getAll,
   add,

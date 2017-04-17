@@ -53,6 +53,10 @@ app.get("/delete/:id", (req, res)=> {
   })
 })
 
+app.get("/modal1", (req, res) => {
+  
+})
+
 
 
 
