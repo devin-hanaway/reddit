@@ -57,14 +57,18 @@ app.get("/delete/:id", (req, res)=> {
 app.get("/comments/:id", (req, res)=>{
   linkQuery.getPage(req.params.id)
   .then(data=>{
-    res.render("comments", {data})
+    console.log(data);
+    res.render("comments", {data, title: data[0].title, votes: data[0].votes})
+
   })
 })
 
 app.post("/addComment/:id", (req, res)=>{
-  linkQuery.addComment(req.pramams.id)
-  .then(()=>{
-    res.redirect("/comments")
+  req.body.link_id = req.params.id
+  let comId = req.params.id
+  linkQuery.addComment(req.body)
+  .then(data =>{
+    res.redirect("/comments/"+comId)
   })
 })
 

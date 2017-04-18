@@ -22,19 +22,14 @@ function deleteLink(id){
 
 function getPage(id){
   return pg('comments')
-  .join('link', 'link.id', 'comments.link_id')
+  .fullOuterJoin('link', 'link.id', 'comments.link_id')
   .select('*' ).where('link.id', '=', id)
 }
 
 function addComment(obj){
-  let currentLink = obj['link_id']
 
   return pg('comments').insert(obj)
-    .then(function(link_id){
-      return pg('comments')
-      .join('link', 'link.id', 'comments.link_id')
-      .select('comments.username','comments.comment_text' ).where('link.id', '=', currentLink)
-  })
+
 }
 
 
