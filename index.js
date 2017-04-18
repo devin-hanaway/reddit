@@ -1,7 +1,7 @@
 const express = require("express")
 const linkQuery = require('./db/link_query')
 const bodyParser = require('body-parser')
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5001
 const app = express()
 
 
@@ -53,10 +53,20 @@ app.get("/delete/:id", (req, res)=> {
   })
 })
 
-app.get("/modal1", (req, res) => {
-  
+
+app.get("/comments/:id", (req, res)=>{
+  linkQuery.getPage(req.params.id)
+  .then(data=>{
+    res.render("comments", {data})
+  })
 })
 
+app.post("/addComment/:id", (req, res)=>{
+  linkQuery.addComment(req.pramams.id)
+  .then(()=>{
+    res.redirect("/comments")
+  })
+})
 
 
 

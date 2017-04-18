@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    {{#each data}}
+    <title>{{title}}</title>
+    {{/each}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/main.css">
+
+  </head>
+  <body class="container">
+    <section>
+      {{#each data}}
+      <h1>{{title}}</h1>
+      <div class="link row">
+        <div class="col l3">
+          <form method="post" href="/upvote/{{this.id}}" action="/upvote/{{this.id}}">
+              <button class="button">  <img src="/up-arrow.png" alt=""></button>
+              <input type="hidden" name="id" value="{{this.id}}">
+              <input type="hidden" name="votes" value="{{this.votes}}">
+          </form>
+          <span class="votes">{{this.votes}}</span>
+          <form method="post" href="/downvote/{{this.id}}" action="/downvote/{{this.id}}">
+              <button class="button">  <img src="/downarrow.png" alt=""></button>
+              <input type="hidden" name="id" value="{{this.id}}">
+              <input type="hidden" name="votes" value="{{this.votes}}">
+          </form>
+        </div>
+        <div class="col l9">
+          <span class="title">
+            <a href="{{this.url}}">{{this.title}}</a>
+          </span>
+        </div>
+      </div>
+      {{/each}}
+    </section>
+    <section>
+      <form action="/addComment" method="post">
+        <div>
+          <label for="username">username:</label>
+          <input type="text" name="username" value="">
+        </div>
+        <div>
+          <label for="commment">comment</label>
+          <input type="text" name="comment" value="">
+        </div>
+        <button>Add Comment</button>
+      </form>
+    </section>
+    <section>
+      {{#each data}}
+      <div class="link row">
+        <h1>{{this.comment_text}}</h1>
+        <h4>{{this.username}}</h4>
+      {{/each}}
+      </div>
+    </section>
+
+  </body>
+</html>
